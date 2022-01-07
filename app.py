@@ -1,6 +1,7 @@
 from pywebio import *
 from pywebio.output import *
 from pywebio.pin import *
+from pywebio import config
 
 img_link = "https://www.influxdata.com/wp-content/uploads/histogram.png"
 md = '*Welcome, here is an instruction.....*'
@@ -24,7 +25,7 @@ def gdp_chart(plot_type):
         #put_html(gdp_chart('geo')) #put the plot on a pywebio app
         return fig.to_html(include_plotlyjs="require", full_html=True)
 
-@config(theme='dark')
+config(theme='dark')
 def main():
     session.set_env(title='My Chart!!', output_max_width='90%')
     put_grid([
@@ -61,7 +62,8 @@ def main():
     #    put_markdown(md)
     #    put_input('something', label='input something to show as a toast message')
     #    put_button('submit', onclick=lambda: toast(pin.something))
-
+if __name__ == '__main__':
+    start_server(main, port=80)
 
 
 
